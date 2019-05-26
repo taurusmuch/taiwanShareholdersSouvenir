@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>105年~109年股東會贈品一覽表</title>
+    <style>
+        table {
+          border:1px solid #000;
+          font-size:16px;
+          text-align:center;
+          border-collapse:collapse;
+        }
+        thead {
+          background-color: #009FCC;
+          padding:10px;
+          border:1px solid #000;
+          color:#fff;
+        }
+        td {
+          border:1px solid #000;
+          padding:5px;
+        }
+        tbody > tr:hover{
+            background-color: #DDDDDD;
+        }
+        h1{
+           text-align:center;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>105年~109年股東會贈品一覽表</h1>
+    <table>
+        <thead>
+            <tr>
+                <td style="width:100px">近四年贈禮數</td>
+                <td>代號</td>
+                <td>公司名</td>
+                <td>禮物(105年)</td>
+                <td>禮物(106年)</td>
+                <td>禮物(107年)</td>
+                <td>禮物(108年)</td>
+            </tr>
+        </thead>
+        <tbody id="t_body"></tbody>
+    </table>
+</body>
+    <script>
+        $.get({
+          url: 'data.json',
+          dataType: 'json',
+          success: function(res){
+            var data = {1:{},2:{},3:{},4:{}};
+            $.each(res, function(key, value){
+                length = Object.keys(value.present).length;
+                if(length == 4){
+                    data[4][key] = value;
+
+                }else if(length == 3){
+                    data[3][key] = value;
+
+                }else if(length == 2){
+                    data[2][key] = value;
+
+                }else {
+                    data[1][key] = value;
+
+                }
+            });
+
+            for(var i=4; i>0; i--){
+                $.each(data[i], function(key, value){
+                    $('#t_body').append('<tr><td>'+i+'</td><td>'+key+'</td><td>'+value.company+'</td><td>'+(value.present[105] == undefined ? '' : value.present[105] )+'</td><td>'+(value.present[106] == undefined ? '' : value.present[106] )+'</td><td>'+(value.present[107] == undefined ? '' : value.present[107] )+'</td><td>'+(value.present[108] == undefined ? '' : value.present[108] )+'</td></tr>');
+                });
+            }
+
+
+          }
+        });
+    </script>
+</html>
