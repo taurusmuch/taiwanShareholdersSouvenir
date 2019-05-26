@@ -71,7 +71,7 @@
 
             for(var i=4; i>0; i--){
                 $.each(data[i], function(key, value){
-                    $('#t_body').append('<tr><td>'+i+'</td><td>'+key+'</td><td>'+value.company+'</td><td>'+(value.present[105] == undefined ? '' : value.present[105] )+'</td><td>'+(value.present[106] == undefined ? '' : value.present[106] )+'</td><td>'+(value.present[107] == undefined ? '' : value.present[107] )+'</td><td>'+(value.present[108] == undefined ? '' : value.present[108] )+'</td></tr>');
+                    $('#t_body').append('<tr><td>'+i+'</td><td><a href="https://tw.stock.yahoo.com/q/bc?s='+key+'" target="_blank">'+key+'</a></td><td>'+value.company+'</td><td>'+(value.present[105] == undefined ? '' : value.present[105] )+'</td><td>'+(value.present[106] == undefined ? '' : value.present[106] )+'</td><td>'+(value.present[107] == undefined ? '' : value.present[107] )+'</td><td>'+(value.present[108] == undefined ? '' : value.present[108] )+'</td></tr>');
                 });
             }
 
